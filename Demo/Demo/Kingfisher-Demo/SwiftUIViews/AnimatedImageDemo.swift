@@ -27,7 +27,7 @@
 import SwiftUI
 import Kingfisher
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 struct AnimatedImageDemo: View {
     
     @State private var index = 1
@@ -39,6 +39,9 @@ struct AnimatedImageDemo: View {
     var body: some View {
         VStack {
             KFAnimatedImage(url)
+                .configure { view in
+                    view.framePreloadCount = 3
+                }
                 .cacheOriginalImage()
                 .onSuccess { r in
                     print("suc: \(r)")
@@ -46,9 +49,8 @@ struct AnimatedImageDemo: View {
                 .onFailure { e in
                     print("err: \(e)")
                 }
-                .placeholder {
-                    Image(systemName: "arrow.2.circlepath.circle")
-                        .font(.largeTitle)
+                .placeholder { p in
+                    ProgressView(p)
                 }
                 .fade(duration: 1)
                 .forceTransition()
@@ -66,7 +68,7 @@ struct AnimatedImageDemo: View {
     
 }
 
-@available(iOS 13.0, *)
+@available(iOS 14.0, *)
 struct AnimatedImageDemo_Previews: PreviewProvider {
     
     static var previews: some View {
