@@ -1,10 +1,10 @@
 //
-//  Result.swift
+//  SingleListDemo.swift
 //  Kingfisher
 //
-//  Created by onevcat on 2018/09/22.
+//  Created by onevcat on 2022/09/21.
 //
-//  Copyright (c) 2019 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2022 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,27 +24,28 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import Foundation
+import SwiftUI
+import Kingfisher
 
-// These helper methods are not public since we do not want them to be exposed or cause any conflicting.
-// However, they are just wrapper of `ResultUtil` static methods.
-extension Result where Failure: Error {
-
-    /// Evaluates the given transform closures to create a single output value.
-    ///
-    /// - Parameters:
-    ///   - onSuccess: A closure that transforms the success value.
-    ///   - onFailure: A closure that transforms the error value.
-    /// - Returns: A single `Output` value.
-    func match<Output>(
-        onSuccess: (Success) -> Output,
-        onFailure: (Failure) -> Output) -> Output
-    {
-        switch self {
-        case let .success(value):
-            return onSuccess(value)
-        case let .failure(error):
-            return onFailure(error)
+@available(iOS 14.0, *)
+struct Issue1998View: View {
+    var body: some View {
+        Text("This is a test case for #1988")
+        
+        List {
+            ForEach(1...100, id: \.self) { idx in
+                KFImage(ImageLoader.sampleImageURLs.first)
+                    .startLoadingBeforeViewAppear()
+                    .resizable()
+                    .frame(width: 48, height: 48)
+            }
         }
+    }
+}
+
+@available(iOS 14.0, *)
+struct SingleListDemo_Previews: PreviewProvider {
+    static var previews: some View {
+        Issue1998View()
     }
 }
