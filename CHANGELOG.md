@@ -2,6 +2,37 @@
 
 -----
 
+## [7.10.2 - GIF crash fix](https://github.com/onevcat/Kingfisher/releases/tag/7.10.2) (2024-01-11)
+
+#### Fix
+* An issue that loading the same GIF image in differnet image views may crash the app. [#2194](https://github.com/onevcat/Kingfisher/pull/2194)
+* A build script issue that exported the xcframeworks does not have the correct cert signing. [#2179](https://github.com/onevcat/Kingfisher/pull/2179)
+* In iOS 13 and earlier, the new Swift runtime fails to convert `Any?` to a protocol value. [#2182](https://github.com/onevcat/Kingfisher/pull/2182)
+
+---
+
+## [7.10.1 - Compilation & Infinity](https://github.com/onevcat/Kingfisher/releases/tag/7.10.1) (2023-12-09)
+
+#### Fix
+* Now the CarPlay support (`CPListItem`) compiles again for iOS SDK 14.0 to 14.4. It was because an undocumented API change in the `CPListItem` property. [#2172](https://github.com/onevcat/Kingfisher/pull/2172) @brendonjkding
+* Fix an infinite `View` refreshing loop when `KFImage` is set with `startLoadingBeforeViewAppear` to `true` and the loading keeping fails. [#2169](https://github.com/onevcat/Kingfisher/pull/2169) @onevcat @sisoje @mirkokg
+
+---
+
+## [7.10.0 - Privacy Manifest](https://github.com/onevcat/Kingfisher/releases/tag/7.10.0) (2023-10-29)
+
+#### Add
+* Actually add the privacy manifest files to the xcframework, Swift Package Manager and CocoaPods. [#2122](https://github.com/onevcat/Kingfisher/issues/2122)[#2156](https://github.com/onevcat/Kingfisher/pull/2156) @CloudosaurusRex @NikcN22
+* Enable the modulemap generation and `-Swift.h` header again for ObjC compatibility. [#2138](https://github.com/onevcat/Kingfisher/pull/2138) @yev-kanivets
+
+#### Fix
+* Use the trait collection to determine animated image scale, instead of the deprecated `UIScreen` API. [#2157](https://github.com/onevcat/Kingfisher/pull/2157) @hyun99999
+* An issue that a local AV asset creates multiple disk caches when connected to Xcode during Debug phase. [#2158](https://github.com/onevcat/Kingfisher/pull/2157) @onevcat @elijahdou
+* The disk cache now is still availiable when the whole cache folder is removed by external operations instead of the methods in Kingfisher. [#2162](https://github.com/onevcat/Kingfisher/pull/2162) @onevcat @uclort
+* Some documentation and CI impro/vements.
+
+---
+
 ## [7.9.1 - Lastest Xcode 15 beta](https://github.com/onevcat/Kingfisher/releases/tag/7.9.1) (2023-08-26)
 
 #### Fix
